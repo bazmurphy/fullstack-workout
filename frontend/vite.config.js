@@ -12,5 +12,13 @@ export default defineConfig({
     //     changeOrigin: true,
     //   },
     // },
+    proxy: {
+      '/api': {
+        target: 'https://fullstack-workout.up.railway.app',
+        changeOrigin: true,
+        secure: false,
+        // ws: true,
+      },
+    },
   },
 });
