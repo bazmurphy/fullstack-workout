@@ -21,7 +21,8 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       // this url has to be changed in PRODUCTION to the actual endpoint
-      const response = await fetch('/api/workouts', {
+      // const response = await fetch('/api/workouts', {
+      const response = await fetch('https://fullstack-workout.up.railway.app/api/workouts', {
         // we have to attach headers to the request to authorize access to the endpoint
         headers: {
           Authorization: `Bearer ${user.token}`,

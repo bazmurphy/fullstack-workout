@@ -46,7 +46,8 @@ const WorkoutFormAdd = () => {
     // console.log('WorkoutFormAdd handleSubmit workout:', workout);
 
     // the handleSubmit needs to be ASYNC for this
-    const response = await fetch('/api/workouts', {
+    // const response = await fetch('/api/workouts', {
+    const response = await fetch('https://fullstack-workout.up.railway.app/api/workouts', {
       method: 'POST',
       body: JSON.stringify(workout),
       headers: {

@@ -69,14 +69,18 @@ const WorkoutFormUpdate = ({ workouts }) => {
     // console.log('WorkoutFormUpdate handleSubmit workout:', workout);
 
     // the handleSubmit needs to be ASYNC for this
-    const response = await fetch(`/api/workouts/${workoutId}`, {
-      method: 'PATCH',
-      body: JSON.stringify(workout),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    // const response = await fetch(`/api/workouts/${workoutId}`, {
+    const response = await fetch(
+      `https://fullstack-workout.up.railway.app/api/workouts/${workoutId}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(workout),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     // console.log('WorkoutFormUpdate handleSubmit response:', response);
 

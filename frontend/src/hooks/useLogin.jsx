@@ -17,7 +17,8 @@ export const useLogin = () => {
     // console.log('useLogin - email:', email, 'password:', password);
 
     // we send a POST Request to the API using the Login Form Data
-    const response = await fetch('/api/user/login', {
+    // const response = await fetch('/api/user/login', {
+    const response = await fetch('https://fullstack-workout.up.railway.app/api/user/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password }),

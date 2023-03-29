@@ -26,12 +26,16 @@ const WorkoutCard = ({ workout, index }) => {
   const handleClick = async () => {
     setIsDeleting(true);
 
-    const response = await fetch(`/api/workouts/${workout._id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    // const response = await fetch(`/api/workouts/${workout._id}`, {
+    const response = await fetch(
+      `https://fullstack-workout.up.railway.app/api/workouts/${workout._id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     // console.log('WorkoutCard handleClick response:', response);
 
