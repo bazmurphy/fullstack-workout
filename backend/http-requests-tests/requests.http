@@ -1,0 +1,223 @@
+# THESE REQUIRE THE VSCODE EXTENSION: "REST Client for Visual Studio Code"
+
+# GET REQUEST - Get All Workouts
+get http://localhost:3001/api/workouts/
+
+###
+
+# GET REQUEST - Get A Single Workout
+get http://localhost:3001/api/workouts/640f100af6f771c15fd8dce5
+
+###
+
+# GET REQUEST - Get A Single Workout - with Invalid ID
+get http://localhost:3001/api/workouts/ABC
+
+###
+
+# GET REQUEST - Get A Single Workout - with valid but Non Existant ID
+get http://localhost:3001/api/workouts/640f100af6f771c15fd8dce4
+
+###
+
+# POST REQUEST - Create A New Workout
+post http://localhost:3001/api/workouts/
+Content-Type: application/json
+
+{
+ "title": "press ups",
+ "reps": 20,
+ "load": 0
+}
+
+###
+
+# POST REQUEST - Create A New Workout - Missing all required Schema values - the "load" key/value is missing
+post http://localhost:3001/api/workouts/
+Content-Type: application/json
+
+{
+ "title": "press ups",
+ "reps": 20
+}
+
+###
+
+
+# DELETE REQUEST - Delete A Workout
+delete http://localhost:3001/api/workouts/640f23bb457c77dc975dba9d
+
+###
+
+# DELETE REQUEST - Delete A Workout - with Invalid ID
+delete http://localhost:3001/api/workouts/ABC
+
+###
+
+# DELETE REQUEST - Delete A Workout - with valid but Non Existant ID
+delete http://localhost:3001/api/workouts/640f23bb457c77dc975dba9e
+
+###
+
+# PATCH REQUEST - Update A Workout
+patch http://localhost:3001/api/workouts/640f18c4e0eb7fb4249774a4
+Content-Type: application/json
+
+{
+  "reps": 25
+}
+
+###
+
+# PATCH REQUEST - Update A Workout - with Invalid ID
+patch http://localhost:3001/api/workouts/ABC
+Content-Type: application/json
+
+{
+  "reps": 25
+}
+
+###
+
+# PATCH REQUEST - Update A Workout - with valid but Non Existant ID
+patch http://localhost:3001/api/workouts/640f100af6f771c15fd8dce4
+Content-Type: application/json
+
+{
+  "reps": 25
+}
+
+
+###
+
+# POST REQUEST - Signup - No Email OR Password Provided
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
+###
+
+# POST REQUEST - Signup - No Email Provided
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": "test1234"
+}
+
+###
+
+# POST REQUEST - Signup - No Password Provided
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": ""
+}
+
+###
+
+# POST REQUEST - Signup - Weak Password Provided
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": "test1234"
+}
+
+###
+
+# POST REQUEST - Signup - Strong Password
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": "Password123!"
+}
+
+###
+
+# POST REQUEST - Signup - Email Already Used
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": "Password123!"
+}
+
+
+###
+
+# POST REQUEST - Signup - Json Web Token Confirmation
+post http://localhost:3001/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test2@test.com",
+  "password": "Password456!"
+}
+
+
+###
+
+# POST REQUEST - Login - With Existing Email/Password
+post http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": "Password123!"
+}
+
+###
+
+# POST REQUEST - Login - With Existing Email but Incorrect Password
+post http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+  "email": "test1@test.com",
+  "password": "IncorrectPassword"
+}
+
+###
+
+# POST REQUEST - Login - With Non-Existing Email
+post http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+  "email": "test9@test.com",
+  "password": "RandomPassword"
+}
+
+###
+
+
+# AUTHORIZATION CHECKS
+
+# GET REQUEST - Workouts - No Authorization Token
+get http://localhost:3001/api/workouts
+
+###
+
+# GET REQUEST - Workouts - Incorrect Authorization Token
+get http://localhost:3001/api/workouts
+Content-Type: application/json
+Authorization: Bearer random123incorrect456token
+
+###
+
+# GET REQUEST - Workouts - Correct Authorization Token
+get http://localhost:3001/api/workouts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDEzMTVkNzhjMDg4ODg3YTIwN2U1MTUiLCJpYXQiOjE2Nzg5NzIzNzUsImV4cCI6MTY3OTE0NTE3NX0.Tgijbv-7Kjh3LUTIlfxmPijU1-q7fEPYwTbWHYUF2is
