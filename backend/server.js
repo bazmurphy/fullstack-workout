@@ -6,6 +6,8 @@ dotenv.config();
 
 const express = require('express');
 
+const cors = require('cors');
+
 // Mongoose is what is known as an ODM Library
 // ODM stands for Object Data Modelling
 // It wraps MongoDB with an extra layer that allows us to use methods to read and write database Documents
@@ -21,6 +23,8 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 // Middleware
+
+app.use(cors());
 
 // the only way we can access the json that is sent with the request is using some middleware
 // and its built into express, the json method
