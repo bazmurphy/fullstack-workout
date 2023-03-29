@@ -16,7 +16,6 @@ export default defineConfig({
       '/api': {
         target: 'https://fullstack-workout.up.railway.app',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
